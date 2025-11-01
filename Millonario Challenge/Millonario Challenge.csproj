@@ -67,6 +67,7 @@
     <Compile Include="PreguntaOpcionMultiple.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositorioPreguntasSql.cs" />
     <Compile Include="RespuestaPartida.cs" />
     <Compile Include="Usuario.cs" />
     <EmbeddedResource Include="Form1.resx">
