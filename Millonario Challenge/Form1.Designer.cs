@@ -97,6 +97,7 @@
             this.Controls.Add(this.btnIniciar);
             this.Name = "MainForm";
             this.Text = "Trivia - Millonario Challenge";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

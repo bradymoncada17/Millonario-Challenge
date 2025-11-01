@@ -14,9 +14,20 @@ namespace Millonario_Challenge
         [STAThread]
         static void Main()
         {
+            try
+            {
+                var c = ConexionBD.Instancia.ObtenerConexion();
+                MessageBox.Show("Conexión OK");
+                ConexionBD.Instancia.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
+            
         }
     }
 }

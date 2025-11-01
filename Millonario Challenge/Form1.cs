@@ -16,5 +16,10 @@ namespace Millonario_Challenge
         {
             InitializeComponent();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
