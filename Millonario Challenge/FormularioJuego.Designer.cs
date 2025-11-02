@@ -1,6 +1,6 @@
 ﻿namespace Millonario_Challenge
 {
-    partial class frmFormularioJuego
+    partial class FormularioJuego
     {
         /// <summary>
         /// Required designer variable.
@@ -48,7 +48,7 @@
             this.btnRespuestaA.Size = new System.Drawing.Size(161, 43);
             this.btnRespuestaA.TabIndex = 19;
             this.btnRespuestaA.UseVisualStyleBackColor = true;
-            this.btnRespuestaA.Click += new System.EventHandler(this.btnRespuestaA_Click);
+  
             // 
             // btnRespuestaB
             // 
@@ -58,8 +58,7 @@
             this.btnRespuestaB.Size = new System.Drawing.Size(161, 43);
             this.btnRespuestaB.TabIndex = 20;
             this.btnRespuestaB.UseVisualStyleBackColor = true;
-            this.btnRespuestaB.Click += new System.EventHandler(this.btnRespuestaB_Click);
-            // 
+// 
             // btnRespuestaC
             // 
             this.btnRespuestaC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -68,7 +67,7 @@
             this.btnRespuestaC.Size = new System.Drawing.Size(161, 43);
             this.btnRespuestaC.TabIndex = 21;
             this.btnRespuestaC.UseVisualStyleBackColor = true;
-            this.btnRespuestaC.Click += new System.EventHandler(this.btnRespuestaC_Click);
+           
             // 
             // btnRespuestaD
             // 
@@ -78,7 +77,7 @@
             this.btnRespuestaD.Size = new System.Drawing.Size(161, 43);
             this.btnRespuestaD.TabIndex = 22;
             this.btnRespuestaD.UseVisualStyleBackColor = true;
-            this.btnRespuestaD.Click += new System.EventHandler(this.btnRespuestaD_Click);
+            
             // 
             // lblPregunta
             // 

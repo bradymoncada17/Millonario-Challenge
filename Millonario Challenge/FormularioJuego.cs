@@ -1,34 +1,35 @@
-﻿using System;
+﻿using MillonarioApp.Datos;
+using MillonarioApp.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Millonario_Challenge
 {
-    public partial class frmFormularioJuego : Form
+    public partial class FormularioJuego : Form
     {
-        private int usuarioId;
-        private string nombreUsuario;
         private IRepositorioPreguntas _repoPreg;
         private IRepositorioPartidas _repoPart;
         private IRepositorioUsuarios _repoUsr;
+
         private List<PreguntaOpcionMultiple> _preguntas;
         private int _indiceActual = 0;
         private int _dinero = 0;
         private int _correctas = 0;
         private int _partidaId = 0;
-        private bool _uso5050 = false, _usoPublico = false;
-       
+        private bool _uso5050 = false, _usoPublico = false, _usoLlamar = false;
 
-        public frmFormularioJuego(int usuarioId, string nombreUsuario, IRepositorioPreguntas repoP, IRepositorioPartidas repoPa, IRepositorioUsuarios repoU)
+        public FormularioJuego(IRepositorioPreguntas repoP, IRepositorioPartidas repoPa, IRepositorioUsuarios repoU)
         {
-
-            
+            InitializeComponent();
             _repoPreg = repoP;
             _repoPart = repoPa;
             _repoUsr = repoU;
@@ -40,103 +41,6 @@ namespace Millonario_Challenge
             var todas = _repoPreg.ObtenerTodas();
             _preguntas = todas.OrderBy(x => Guid.NewGuid()).Take(Math.Min(15, todas.Count)).ToList();
         }
-
-        private void btnRespuestaA_Click(object sender, EventArgs e)
-        {
-            var boton = (Button)sender;
-            int seleccionado = Convert.ToInt32(boton.Tag);
-            var p = _preguntas[_indiceActual];
-            bool esCorrecto = seleccionado == p.IndiceCorrecto;
-            if (esCorrecto)
-            {
-                _correctas++;
-                _dinero += p.Premio;
-                lblDinero.Text = "Dinero: " + _dinero;
-                // guardar respuesta provisional al final o guardar ahora en memoria para luego persistir
-                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, true); // si la partida ya está creada
-                _indiceActual++;
-                MostrarPregunta();
-            }
-            else
-            {
-                MessageBox.Show("Respuesta incorrecta. Fin del juego.");
-                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, false);
-                FinalizarPartida();
-            }
-        }
-
-        private void btnRespuestaD_Click(object sender, EventArgs e)
-        {
-            var boton = (Button)sender;
-            int seleccionado = Convert.ToInt32(boton.Tag);
-            var p = _preguntas[_indiceActual];
-            bool esCorrecto = seleccionado == p.IndiceCorrecto;
-            if (esCorrecto)
-            {
-                _correctas++;
-                _dinero += p.Premio;
-                lblDinero.Text = "Dinero: " + _dinero;
-                // guardar respuesta provisional al final o guardar ahora en memoria para luego persistir
-                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, true); // si la partida ya está creada
-                _indiceActual++;
-                MostrarPregunta();
-            }
-            else
-            {
-                MessageBox.Show("Respuesta incorrecta. Fin del juego.");
-                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, false);
-                FinalizarPartida();
-            }
-        }
-
-        private void btnRespuestaB_Click(object sender, EventArgs e)
-        {
-            var boton = (Button)sender;
-            int seleccionado = Convert.ToInt32(boton.Tag);
-            var p = _preguntas[_indiceActual];
-            bool esCorrecto = seleccionado == p.IndiceCorrecto;
-            if (esCorrecto)
-            {
-                _correctas++;
-                _dinero += p.Premio;
-                lblDinero.Text = "Dinero: " + _dinero;
-                // guardar respuesta provisional al final o guardar ahora en memoria para luego persistir
-                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, true); // si la partida ya está creada
-                _indiceActual++;
-                MostrarPregunta();
-            }
-            else
-            {
-                MessageBox.Show("Respuesta incorrecta. Fin del juego.");
-                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, false);
-                FinalizarPartida();
-            }
-        }
-
-        private void btnRespuestaC_Click(object sender, EventArgs e)
-        {
-            var boton = (Button)sender;
-            int seleccionado = Convert.ToInt32(boton.Tag);
-            var p = _preguntas[_indiceActual];
-            bool esCorrecto = seleccionado == p.IndiceCorrecto;
-            if (esCorrecto)
-            {
-                _correctas++;
-                _dinero += p.Premio;
-                lblDinero.Text = "Dinero: " + _dinero;
-                // guardar respuesta provisional al final o guardar ahora en memoria para luego persistir
-                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, true); // si la partida ya está creada
-                _indiceActual++;
-                MostrarPregunta();
-            }
-            else
-            {
-                MessageBox.Show("Respuesta incorrecta. Fin del juego.");
-                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, false);
-                FinalizarPartida();
-            }
-        }
-
         private void MostrarPregunta()
         {
             if (_indiceActual >= _preguntas.Count)
@@ -153,6 +57,76 @@ namespace Millonario_Challenge
             btnRespuestaD.Text = "D) " + p.Opciones[3];
             btnRespuestaA.Enabled = btnRespuestaB.Enabled = btnRespuestaC.Enabled = btnRespuestaD.Enabled = true;
         }
+       
+        private void FinalizarPartida()
+        {
+            try
+            {
+                // Guardar los datos finales de la partida en la base de datos
+                _repoPart.FinalizarPartida(_partidaId, _dinero, _correctas);
+
+                // Mostrar un resumen al jugador
+                MessageBox.Show(
+                    $"Fin del juego.\n\nRespuestas correctas: {_correctas}\nDinero ganado: {_dinero}",
+                    "Partida finalizada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                // Cerrar el formulario de juego y volver al menú principal
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al finalizar la partida: " + ex.Message);
+            }
+        }
+        private void FormularioJuego_Load(object sender, EventArgs e)
+        {
+            btnRespuestaA.Tag = 0;
+            btnRespuestaB.Tag = 1;
+            btnRespuestaC.Tag = 2;
+            btnRespuestaD.Tag = 3;
+        }
+        private void BotonRespuesta_Click(object sender, EventArgs e)
+        {
+            // Saber cuál botón fue presionado
+            Button boton = (Button)sender;
+
+            // Convertir el valor del Tag (0, 1, 2 o 3) a número
+            int seleccionado = Convert.ToInt32(boton.Tag);
+
+            // Obtener la pregunta actual
+            var p = _preguntas[_indiceActual];
+
+            // Verificar si la respuesta es correcta
+            bool esCorrecto = seleccionado == p.IndiceCorrecto;
+
+            if (esCorrecto)
+            {
+                _correctas++;
+                _dinero += p.Premio;
+                lblDinero.Text = "Dinero: " + _dinero;
+
+                // Guardar respuesta correcta en base de datos
+                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, true);
+
+                // Pasar a la siguiente pregunta
+                _indiceActual++;
+                MostrarPregunta();
+            }
+            else
+            {
+                MessageBox.Show("Respuesta incorrecta. Fin del juego.");
+                _repoPart.GuardarRespuestaPartida(_partidaId, p.Id, null, false);
+                FinalizarPartida();
+            }
+        }
+
+
+
+
+
 
         private void btnCincuentaCincuenta_Click(object sender, EventArgs e)
         {
@@ -169,38 +143,6 @@ namespace Millonario_Challenge
             _uso5050 = true;
         }
 
-        public frmFormularioJuego(IRepositorioPreguntas repoPreg, IRepositorioPartidas repoPart, IRepositorioUsuarios repoUsr)
-        {
-            InitializeComponent();
-        }
-
-        public frmFormularioJuego(int usuarioId, string nombreUsuario)
-        {
-            this.usuarioId = usuarioId;
-            this.nombreUsuario = nombreUsuario;
-        }
-
-        private void FinalizarPartida()
-        {
-            // Evitar más interacciones en la UI
-            btnRespuestaA.Enabled = btnRespuestaB.Enabled = btnRespuestaC.Enabled = btnRespuestaD.Enabled = false;
-
-            // Guardar la partida si existe el repositorio
-            if (_repoPart != null)
-            {
-                // Si no hay partida creada, crearla y obtener el id devuelto
-                if (_partidaId == 0)
-                {
-                    int? uid = usuarioId > 0 ? (int?)usuarioId : null;
-                    _partidaId = _repoPart.GuardarPartida(uid, _dinero, _correctas);
-                }
-            }
-
-            // Mensaje final al usuario
-            MessageBox.Show($"Partida finalizada. Respuestas correctas: {_correctas}, Dinero ganado: {_dinero}");
-
-            // Cerrar el formulario de juego
-            this.Close();
-        }
+       
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Millonario_Challenge;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Millonario_Challenge
+namespace MillonarioApp.Modelos
 {
     public class PreguntaOpcionMultiple : Pregunta
     {
@@ -26,8 +27,5 @@ namespace Millonario_Challenge
         public override IList<string> Opciones => ListaOpciones;
         public override int IndiceCorrecto => IndiceCorrectoInterno;
     }
-
-
-
 }
 

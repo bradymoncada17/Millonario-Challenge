@@ -1,17 +1,10 @@
-﻿using Millonario_Challenge;
+﻿using MillonarioApp.Datos;
+using MillonarioApp.Modelos;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
 
 namespace Millonario_Challenge
 {
@@ -102,27 +95,63 @@ namespace Millonario_Challenge
             }
         }
 
-
-        private void LimpiarCampos()
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            txtPregunta.Clear();
-            txtOpcionA.Clear();
-            txtOpcionB.Clear();
-            txtOpcionC.Clear();
-            txtOpcionD.Clear();
-            txtIndiceCorrecto.Clear();
-            if (this.Controls.ContainsKey("cmbDificultad"))
+            try
             {
-                var cmb = this.Controls["cmbDificultad"] as ComboBox;
-                if (cmb != null) cmb.SelectedIndex = 0;
+                // VALIDACIÓN
+                if (string.IsNullOrWhiteSpace(txtPregunta.Text) ||
+                    string.IsNullOrWhiteSpace(txtOpcionA.Text) ||
+                    string.IsNullOrWhiteSpace(txtOpcionB.Text) ||
+                    string.IsNullOrWhiteSpace(txtOpcionC.Text) ||
+                    string.IsNullOrWhiteSpace(txtOpcionD.Text) ||
+                    !int.TryParse(txtIndiceCorrecto.Text, out int indice) || indice < 0 || indice > 3)
+                {
+                    MessageBox.Show("Complete todos los campos correctamente (Índice 0..3).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int dif;
+                if (this.Controls.ContainsKey("cmbDificultad"))
+                {
+                    var cmb = this.Controls["cmbDificultad"] as ComboBox;
+                    dif = (cmb != null) ? cmb.SelectedIndex + 1 : 1;
+                }
+                else
+                {
+                    if (!int.TryParse(txtDificultad.Text, out dif) || dif < 1 || dif > 3)
+                    {
+                        MessageBox.Show("Seleccione o ingrese una dificultad válida (1..3).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+                // Crear PreguntaOpcionMultiple y lista opciones para el repositorio
+                var listaOpciones = new List<string> { txtOpcionA.Text, txtOpcionB.Text, txtOpcionC.Text, txtOpcionD.Text };
+                var pregunta = new PreguntaOpcionMultiple(txtPregunta.Text, listaOpciones, indice, dif, dif * 100, "General");
+
+                // Construir lista de tuplas (texto, esCorrecta) según la firma del repositorio
+                var opcionesParaRepo = new List<(string texto, bool esCorrecta)>
+                {
+                    (txtOpcionA.Text, indice == 0),
+                    (txtOpcionB.Text, indice == 1),
+                    (txtOpcionC.Text, indice == 2),
+                    (txtOpcionD.Text, indice == 3)
+                };
+
+                _repoPreguntas.Agregar(pregunta, opcionesParaRepo);
+
+                MessageBox.Show("Pregunta agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarLista();
+                LimpiarCampos();
             }
-            else
+            catch (Exception ex)
             {
-                txtDificultad.Clear();
+                MessageBox.Show("Error al agregar la pregunta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnEditar_Click_1(object sender, EventArgs e)
+        private void btnEditar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -192,64 +221,7 @@ namespace Millonario_Challenge
             }
         }
 
-        private void btnAgregar_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                // VALIDACIÓN
-                if (string.IsNullOrWhiteSpace(txtPregunta.Text) ||
-                    string.IsNullOrWhiteSpace(txtOpcionA.Text) ||
-                    string.IsNullOrWhiteSpace(txtOpcionB.Text) ||
-                    string.IsNullOrWhiteSpace(txtOpcionC.Text) ||
-                    string.IsNullOrWhiteSpace(txtOpcionD.Text) ||
-                    !int.TryParse(txtIndiceCorrecto.Text, out int indice) || indice < 0 || indice > 3)
-                {
-                    MessageBox.Show("Complete todos los campos correctamente (Índice 0..3).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                int dif;
-                if (this.Controls.ContainsKey("cmbDificultad"))
-                {
-                    var cmb = this.Controls["cmbDificultad"] as ComboBox;
-                    dif = (cmb != null) ? cmb.SelectedIndex + 1 : 1;
-                }
-                else
-                {
-                    if (!int.TryParse(txtDificultad.Text, out dif) || dif < 1 || dif > 3)
-                    {
-                        MessageBox.Show("Seleccione o ingrese una dificultad válida (1..3).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                }
-
-                // Crear PreguntaOpcionMultiple y lista opciones para el repositorio
-                var listaOpciones = new List<string> { txtOpcionA.Text, txtOpcionB.Text, txtOpcionC.Text, txtOpcionD.Text };
-                var pregunta = new PreguntaOpcionMultiple(txtPregunta.Text, listaOpciones, indice, dif, dif * 100, "General");
-
-                // Construir lista de tuplas (texto, esCorrecta) según la firma del repositorio
-                var opcionesParaRepo = new List<(string texto, bool esCorrecta)>
-                {
-                    (txtOpcionA.Text, indice == 0),
-                    (txtOpcionB.Text, indice == 1),
-                    (txtOpcionC.Text, indice == 2),
-                    (txtOpcionD.Text, indice == 3)
-                };
-
-                _repoPreguntas.Agregar(pregunta, opcionesParaRepo);
-
-                MessageBox.Show("Pregunta agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarLista();
-                LimpiarCampos();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al agregar la pregunta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        private void btnEliminar_Click_1(object sender, EventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -280,9 +252,7 @@ namespace Millonario_Challenge
             {
                 MessageBox.Show("Error al eliminar la pregunta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-
         private void btnCargarSemilla_Click(object sender, EventArgs e)
         {
             try
@@ -297,8 +267,7 @@ namespace Millonario_Challenge
                 }
 
                 // Leer todas las líneas del archivo, omitiendo la primera (encabezados)
-                var lineas = File.ReadAllLines(rutaArchivo, Encoding.UTF8).Skip(1);
-
+                var lineas = File.ReadAllLines(rutaArchivo).Skip(1);
 
                 foreach (var linea in lineas)
                 {
@@ -345,6 +314,26 @@ namespace Millonario_Challenge
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar la semilla: " + ex.Message);
+            }
+        }
+
+
+        private void LimpiarCampos()
+        {
+            txtPregunta.Clear();
+            txtOpcionA.Clear();
+            txtOpcionB.Clear();
+            txtOpcionC.Clear();
+            txtOpcionD.Clear();
+            txtIndiceCorrecto.Clear();
+            if (this.Controls.ContainsKey("cmbDificultad"))
+            {
+                var cmb = this.Controls["cmbDificultad"] as ComboBox;
+                if (cmb != null) cmb.SelectedIndex = 0;
+            }
+            else
+            {
+                txtDificultad.Clear();
             }
         }
     }

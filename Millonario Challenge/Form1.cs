@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MillonarioApp.Datos;
+using MillonarioApp.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,32 +17,18 @@ namespace Millonario_Challenge
         private readonly IRepositorioPreguntas _repoPreg;
         private readonly IRepositorioPartidas _repoPart;
         private readonly IRepositorioUsuarios _repoUsr;
-        private int _usuarioId;
-        private string _nombreUsuario;
+
         public FormularioPrincipal(int usuarioId, string nombreUsuario)
         {
             InitializeComponent();
             _repoPreg = new RepositorioPreguntasSql();
-            _repoPart = new RepositorioPartidasSql() as IRepositorioPartidas;
+            _repoPart = new RepositorioPartidasSql();
             _repoUsr = new RepositorioUsuariosSql();
-            _usuarioId = usuarioId; // Asignar el valor recibido al campo
-            _nombreUsuario = nombreUsuario; // Asignar el valor recibido al campo
-            lblBienvenida.Text = $"¡Bienvenido, {_nombreUsuario}!";
-        }
-
-        public FormularioPrincipal()
-        {
-            InitializeComponent();
-            _repoPreg = new RepositorioPreguntasSql();
-            _repoPart = new RepositorioPartidasSql() as IRepositorioPartidas;
-            _repoUsr = new RepositorioUsuariosSql();
-            _usuarioId = 0;
-            _nombreUsuario = string.Empty;
         }
 
         private void btnIniciarJuego_Click(object sender, EventArgs e)
         {
-            var frm = new frmFormularioJuego(_repoPreg, _repoPart, _repoUsr);
+            var frm = new FormularioJuego(_repoPreg, _repoPart, _repoUsr);
             frm.ShowDialog();
         }
 
@@ -52,7 +40,7 @@ namespace Millonario_Challenge
 
         private void btnRanking_Click(object sender, EventArgs e)
         {
-            var frm = new FormularioRanking();
+            var frm = new FormularioRanking(_repoPart);
             frm.ShowDialog();
         }
 

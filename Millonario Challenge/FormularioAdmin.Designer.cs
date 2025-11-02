@@ -196,7 +196,7 @@
             this.btnEliminar.TabIndex = 16;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
+            
             // 
             // btnEditar
             // 
@@ -207,7 +207,7 @@
             this.btnEditar.TabIndex = 17;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click_1);
+            
             // 
             // btnAgregar
             // 
@@ -218,7 +218,7 @@
             this.btnAgregar.TabIndex = 18;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
+           
             // 
             // FormularioAdmin
             // 

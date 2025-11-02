@@ -14,7 +14,7 @@ namespace Millonario_Challenge
     {
         private RepositorioPartidasSql _repoPart;
 
-        public FormularioRanking()
+        public FormularioRanking(IRepositorioPartidas repo)
         {
             InitializeComponent();
             _repoPart = new RepositorioPartidasSql(); // 🔹 Se crea aquí

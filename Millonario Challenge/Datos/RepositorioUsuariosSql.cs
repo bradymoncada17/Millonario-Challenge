@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Millonario_Challenge;
 using System.Data.SqlClient;
 using System.Configuration;
+using MillonarioApp.Modelos;
 
 
-namespace Millonario_Challenge
+namespace MillonarioApp.Datos
 {
     public class RepositorioUsuariosSql : IRepositorioUsuarios
     {

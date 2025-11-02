@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Millonario_Challenge
+namespace MillonarioApp.Modelos
 {
     public class RespuestaPartida
     {

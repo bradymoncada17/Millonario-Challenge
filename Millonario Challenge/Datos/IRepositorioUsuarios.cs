@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Millonario_Challenge;
 
-namespace Millonario_Challenge
+namespace MillonarioApp.Datos
 {
     public interface IRepositorioUsuarios
     {

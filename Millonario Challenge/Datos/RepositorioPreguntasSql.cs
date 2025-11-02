@@ -1,11 +1,8 @@
-﻿using System;
+﻿using MillonarioApp.Datos;
+using MillonarioApp.Modelos;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Millonario_Challenge;
 using System.Data.SqlClient;
-
 
 namespace Millonario_Challenge
 {
@@ -223,7 +220,3 @@ namespace Millonario_Challenge
         }
     }
 }
-
-
-
-

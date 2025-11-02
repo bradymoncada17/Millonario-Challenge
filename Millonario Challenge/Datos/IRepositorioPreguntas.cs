@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Millonario_Challenge;
+using MillonarioApp.Modelos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Millonario_Challenge;
 
-namespace Millonario_Challenge
+namespace MillonarioApp.Datos
 {
     public interface IRepositorioPreguntas
     {
@@ -14,7 +15,5 @@ namespace Millonario_Challenge
         void Agregar(PreguntaOpcionMultiple pregunta, List<(string texto, bool esCorrecta)> opciones);
         void Actualizar(PreguntaOpcionMultiple pregunta, List<(int opcionId, string texto, bool esCorrecta)> opciones);
         void Eliminar(int preguntaId);
-
-
     }
 }
