@@ -1,6 +1,7 @@
 ﻿using MillonarioApp.Datos;
 using MillonarioApp.Modelos;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Millonario_Challenge
@@ -33,6 +34,17 @@ namespace Millonario_Challenge
                 if (lbl != null) lbl.Text = $"Bienvenido, {_nombreUsuario}";
             }
         }
+        // Campo en la clase
+        private readonly string[] usuariosAutorizados = new[] { "Brady", "Profesor" };
+
+        // En el constructor o en Load, ocultar el botón si no está autorizado
+        private void FormularioPrincipal_Load(object sender, EventArgs e)
+        {
+            if (!usuariosAutorizados.Any(u => u.Equals(_nombreUsuario, StringComparison.OrdinalIgnoreCase)))
+            {
+                btnAdministrarPreguntas.Visible = false; // u btnAdministrarPreguntas.Enabled = false;
+            }
+        }
 
         private void btnIniciarJuego_Click(object sender, EventArgs e)
         {
@@ -43,8 +55,17 @@ namespace Millonario_Challenge
 
         private void btnAdministrarPreguntas_Click(object sender, EventArgs e)
         {
-            var frm = new FormularioAdmin(_repoPreg);
-            frm.ShowDialog();
+
+            if (usuariosAutorizados.Any(u => u.Equals(_nombreUsuario, StringComparison.OrdinalIgnoreCase)))
+            {
+                var frm = new FormularioAdmin(_repoPreg);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Solo usuarios autorizados pueden acceder.", "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
 
         private void btnRanking_Click(object sender, EventArgs e)
