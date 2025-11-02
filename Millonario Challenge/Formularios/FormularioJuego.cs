@@ -134,6 +134,13 @@ namespace Millonario_Challenge
             }
         }
 
+        private void btnRetirarse_Click(object sender, EventArgs e)
+        {
+
+            FinalizarPartida();
+
+        }
+
         private void BotonRespuesta_Click(object sender, EventArgs e)
         {
             if (_partidaId <= 0)

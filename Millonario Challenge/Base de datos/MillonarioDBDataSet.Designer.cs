@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Millonario_Challenge {
+namespace Millonario_Challenge.Base_de_datos {
     
     
     /// <summary>
@@ -2843,7 +2843,7 @@ namespace Millonario_Challenge {
         }
     }
 }
-namespace Millonario_Challenge.MillonarioDBDataSetTableAdapters {
+namespace Millonario_Challenge.Base_de_datos.MillonarioDBDataSetTableAdapters {
     
     
     /// <summary>

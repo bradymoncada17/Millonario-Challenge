@@ -48,42 +48,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\ConexionBD.cs" />
-    <Compile Include="ExportadorCsv.cs" />
+    <Compile Include="Fabrica\ExportadorCsv.cs" />
     <Compile Include="Fabrica\FabricaPreguntas.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Formularios\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Formularios\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormularioAdmin.cs">
+    <Compile Include="Formularios\FormularioAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormularioAdmin.Designer.cs">
+    <Compile Include="Formularios\FormularioAdmin.Designer.cs">
       <DependentUpon>FormularioAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormularioJuego.cs">
+    <Compile Include="Formularios\FormularioJuego.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormularioJuego.Designer.cs">
+    <Compile Include="Formularios\FormularioJuego.Designer.cs">
       <DependentUpon>FormularioJuego.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormularioRanking.cs">
+    <Compile Include="Formularios\FormularioRanking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormularioRanking.Designer.cs">
+    <Compile Include="Formularios\FormularioRanking.Designer.cs">
       <DependentUpon>FormularioRanking.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormularioRegistroUsuario.cs">
+    <Compile Include="Formularios\FormularioRegistroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormularioRegistroUsuario.Designer.cs">
+    <Compile Include="Formularios\FormularioRegistroUsuario.Designer.cs">
       <DependentUpon>FormularioRegistroUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Datos\IRepositorioPartidas.cs" />
     <Compile Include="Datos\IRepositorioPreguntas.cs" />
     <Compile Include="Datos\IRepositorioUsuarios.cs" />
-    <Compile Include="MillonarioDBDataSet.Designer.cs">
+    <Compile Include="Base de datos\MillonarioDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MillonarioDBDataSet.xsd</DependentUpon>
@@ -99,19 +99,19 @@
     <Compile Include="Datos\RepositorioUsuariosSql.cs" />
     <Compile Include="Modelos\RespuestaPartida.cs" />
     <Compile Include="Modelos\Usuario.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Formularios\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormularioAdmin.resx">
+    <EmbeddedResource Include="Formularios\FormularioAdmin.resx">
       <DependentUpon>FormularioAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormularioJuego.resx">
+    <EmbeddedResource Include="Formularios\FormularioJuego.resx">
       <DependentUpon>FormularioJuego.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormularioRanking.resx">
+    <EmbeddedResource Include="Formularios\FormularioRanking.resx">
       <DependentUpon>FormularioRanking.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormularioRegistroUsuario.resx">
+    <EmbeddedResource Include="Formularios\FormularioRegistroUsuario.resx">
       <DependentUpon>FormularioRegistroUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -123,15 +123,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="MillonarioDBDataSet.xsc">
+    <None Include="Base de datos\MillonarioDBDataSet.xsc">
       <DependentUpon>MillonarioDBDataSet.xsd</DependentUpon>
     </None>
-    <None Include="MillonarioDBDataSet.xsd">
+    <None Include="Base de datos\MillonarioDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>MillonarioDBDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="MillonarioDBDataSet.xss">
+    <None Include="Base de datos\MillonarioDBDataSet.xss">
       <DependentUpon>MillonarioDBDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">

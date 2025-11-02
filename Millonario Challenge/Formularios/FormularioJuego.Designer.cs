@@ -48,7 +48,6 @@
             this.btnRespuestaA.Size = new System.Drawing.Size(161, 43);
             this.btnRespuestaA.TabIndex = 19;
             this.btnRespuestaA.UseVisualStyleBackColor = true;
-  
             // 
             // btnRespuestaB
             // 
@@ -58,7 +57,7 @@
             this.btnRespuestaB.Size = new System.Drawing.Size(161, 43);
             this.btnRespuestaB.TabIndex = 20;
             this.btnRespuestaB.UseVisualStyleBackColor = true;
-// 
+            // 
             // btnRespuestaC
             // 
             this.btnRespuestaC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -67,7 +66,6 @@
             this.btnRespuestaC.Size = new System.Drawing.Size(161, 43);
             this.btnRespuestaC.TabIndex = 21;
             this.btnRespuestaC.UseVisualStyleBackColor = true;
-           
             // 
             // btnRespuestaD
             // 
@@ -77,7 +75,6 @@
             this.btnRespuestaD.Size = new System.Drawing.Size(161, 43);
             this.btnRespuestaD.TabIndex = 22;
             this.btnRespuestaD.UseVisualStyleBackColor = true;
-            
             // 
             // lblPregunta
             // 
@@ -118,6 +115,7 @@
             this.btnRetirarse.TabIndex = 26;
             this.btnRetirarse.Text = "Retirarse";
             this.btnRetirarse.UseVisualStyleBackColor = true;
+            this.btnRetirarse.Click += new System.EventHandler(this.btnRetirarse_Click);
             // 
             // btnPublico
             // 
@@ -138,7 +136,7 @@
             this.lblDinero.Size = new System.Drawing.Size(0, 25);
             this.lblDinero.TabIndex = 28;
             // 
-            // frmFormularioJuego
+            // FormularioJuego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,7 +151,7 @@
             this.Controls.Add(this.btnRespuestaC);
             this.Controls.Add(this.btnRespuestaB);
             this.Controls.Add(this.btnRespuestaA);
-            this.Name = "frmFormularioJuego";
+            this.Name = "FormularioJuego";
             this.Text = "FormularioJuego";
             this.ResumeLayout(false);
             this.PerformLayout();
