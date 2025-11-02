@@ -65,26 +65,51 @@ namespace Millonario_Challenge
         }
         private void CargarPreguntas()
         {
-            var todas = _repoPreg.ObtenerTodas();
+            var todas = _repoPreg.ObtenerTodas() ?? new List<PreguntaOpcionMultiple>();
+
+            // Mezclar y tomar hasta 15
             _preguntas = todas.OrderBy(x => Guid.NewGuid()).Take(Math.Min(15, todas.Count)).ToList();
+
+            // Si no hay preguntas, avisar y cerrar el formulario
+            if (_preguntas == null || _preguntas.Count == 0)
+            {
+                MessageBox.Show("No hay preguntas disponibles. Contacte al administrador.");
+                this.Close(); // cierra el formulario de juego
+            }
+
+            // Asegurarse de que el índice empiece en 0 al cargar preguntas
+            _indiceActual = 0;
         }
         private void MostrarPregunta()
         {
-            if (_indiceActual >= _preguntas.Count)
+            // Si la lista es nula o vacía, cerramos
+            if (_preguntas == null || _preguntas.Count == 0)
             {
-                MessageBox.Show("¡Completaste el juego!");
+                MessageBox.Show("No hay preguntas para mostrar.");
+                this.Close();
+                return;
+            }
+
+            // Si _indiceActual está fuera de rango, finalizamos la partida
+            if (_indiceActual < 0 || _indiceActual >= _preguntas.Count)
+            {
+                // Ya no hay más preguntas: finalizamos
                 FinalizarPartida();
                 return;
             }
+
             var p = _preguntas[_indiceActual];
             lblPregunta.Text = $"[{_indiceActual + 1}] {p.Texto}";
-            btnRespuestaA.Text = "A) " + p.Opciones[0];
-            btnRespuestaB.Text = "B) " + p.Opciones[1];
-            btnRespuestaC.Text = "C) " + p.Opciones[2];
-            btnRespuestaD.Text = "D) " + p.Opciones[3];
+
+            // Asignar textos de botones (asegúrate que Opciones tenga 4 elementos)
+            btnRespuestaA.Text = "A) " + (p.Opciones.Count > 0 ? p.Opciones[0] : "");
+            btnRespuestaB.Text = "B) " + (p.Opciones.Count > 1 ? p.Opciones[1] : "");
+            btnRespuestaC.Text = "C) " + (p.Opciones.Count > 2 ? p.Opciones[2] : "");
+            btnRespuestaD.Text = "D) " + (p.Opciones.Count > 3 ? p.Opciones[3] : "");
+
             btnRespuestaA.Enabled = btnRespuestaB.Enabled = btnRespuestaC.Enabled = btnRespuestaD.Enabled = true;
         }
-       
+
         private void FinalizarPartida()
         {
             try
