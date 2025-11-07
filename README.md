@@ -46,6 +46,7 @@ Preguntas (1 - N) RespuestasPartida
 
 Pantallazo
 diagrama entidad-relación exportado de SQL Server 
+<img width="1330" height="819" alt="image" src="https://github.com/user-attachments/assets/231db804-efd7-4f6a-a43f-411701fc3873" />
 
 
 
