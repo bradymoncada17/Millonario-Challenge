@@ -1,161 +1,128 @@
-Trivia Millonaria — Proyecto Final en C#
-Descripción del proyecto
+# Trivia Millonaria — Proyecto Final en C#
 
-Trivia Millonaria es una aplicación de escritorio desarrollada en C# con Windows Forms y SQL Server.
-Simula un juego de preguntas tipo “¿Quién quiere ser millonario?”, en el que el usuario responde preguntas de opción múltiple y acumula dinero virtual según su desempeño.
+## Descripción del proyecto
 
-Objetivo general
+**Trivia Millonaria** es una aplicación de escritorio desarrollada en **C# con Windows Forms y SQL Server**.  
+Simula un juego de preguntas tipo *“¿Quién quiere ser millonario?”*, en el cual el usuario responde preguntas de opción múltiple y acumula dinero virtual según su desempeño.  
+El sistema incorpora registro de usuarios, control de partidas, ranking y un módulo de administración protegido.
+
+---
+
+## Objetivo general
 
 Desarrollar una aplicación de escritorio en C# que permita realizar un juego de trivia con almacenamiento de datos en SQL Server y funcionalidades de registro, control de partidas y ranking de jugadores.
 
-Objetivos específicos
+---
 
-Diseñar una base de datos relacional con las tablas necesarias.
+## Objetivos específicos
 
-Implementar una interfaz gráfica en Windows Forms.
+- Diseñar una base de datos relacional con las tablas necesarias.  
+- Implementar una interfaz gráfica intuitiva con Windows Forms.  
+- Desarrollar la lógica del juego y sus validaciones.  
+- Aplicar los patrones de diseño **Factory**, **Singleton** y **Repository**.  
+- Permitir la **carga masiva de preguntas** desde archivos Excel o CSV.  
+- Incluir **control de acceso** al módulo de administración.
 
-Desarrollar la lógica del juego y sus validaciones.
+---
 
-Aplicar los patrones Factory, Singleton y Repository.
+## Arquitectura técnica
 
-Permitir carga masiva de preguntas desde Excel o CSV.
+| Capa | Contenido |
+|------|------------|
+| **Presentación** | Formularios de Windows Forms |
+| **Lógica** | Clases del dominio del juego |
+| **Datos** | Repositorios y conexión a SQL Server (Singleton + Repository) |
+| **Base de datos** | SQL Server con claves primarias y foráneas |
 
-Incluir control de acceso al módulo de administración.
+---
 
-Arquitectura técnica
-Capa	Contenido
-Presentación	Formularios de Windows Forms
-Lógica	Clases del dominio del juego
-Datos	Repositorios y conexión a SQL (Singleton + Repository)
-BD	SQL Server con claves primarias y foráneas
-Formularios principales
-Formulario	Función
-FormularioRegistroUsuario	Permite registrar o iniciar sesión
-FormularioPrincipal	Menú principal
-FormularioJuego	Muestra las preguntas y controla el progreso
-FormularioRanking	Muestra los mejores jugadores
-FormularioAdmin	Permite administrar preguntas (solo usuario Brady)
-Diseño de la base de datos
+## Formularios principales
 
-Tablas: Usuarios, Preguntas, Opciones, Partidas, RespuestasPartida.
-Relaciones:
+| Formulario | Función principal |
+|-------------|------------------|
+| **FormularioRegistroUsuario** | Permite registrar nuevos usuarios o iniciar sesión |
+| **FormularioPrincipal** | Muestra el menú principal del juego |
+| **FormularioJuego** | Controla el desarrollo de las preguntas y el progreso del jugador |
+| **FormularioRanking** | Muestra los mejores jugadores con opción de exportar a CSV |
+| **FormularioAdmin** | Permite la administración de preguntas (acceso restringido a usuarios como *Brady* y *Profesor*) |
 
-Usuarios (1 - N) Partidas
+---
 
-Preguntas (1 - N) Opciones
+## Diseño de la base de datos
 
-Partidas (1 - N) RespuestasPartida
+**Tablas principales:**  
+- `Usuarios`  
+- `Preguntas`  
+- `Opciones`  
+- `Partidas`  
+- `RespuestasPartida`  
 
-Tecnologías utilizadas
+**Relaciones:**  
+- `Usuarios (1 - N) Partidas`  
+- `Preguntas (1 - N) Opciones`  
+- `Partidas (1 - N) RespuestasPartida`
 
-C# (.NET Framework)
+---
 
-Windows Forms
+## Tecnologías utilizadas
 
-SQL Server
+- **Lenguaje:** C# (.NET Framework)  
+- **Interfaz:** Windows Forms  
+- **Base de datos:** SQL Server  
+- **Acceso a datos:** ADO.NET  
+- **Entorno de desarrollo:** Visual Studio  
 
-ADO.NET
+---
 
-Visual Studio
+## Ejecución del proyecto
 
-Ejecución del proyecto
+1. Clonar el repositorio:
 
-Clonar el repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/Millonario-Challenge.git
 
-git clone https://github.com/tuusuario/Millonario-Challenge.git
+Capturas de funcionamiento
 
+Validación de conexión con la base de datos:
+<img width="244" height="156" alt="Validación de conexión" src="https://github.com/user-attachments/assets/43191920-4f00-416a-a695-a714e7b6816e" />
 
-Abrir el archivo .sln en Visual Studio.
+Login:
+<img width="726" height="432" alt="Login" src="https://github.com/user-attachments/assets/3dd513e1-aa71-4397-9e99-696d60f59490" />
 
-Ejecutar el script MillonarioDB.sql en SQL Server.
+Mensaje de bienvenida si el usuario ya está registrado:
+<img width="727" height="488" alt="Bienvenida" src="https://github.com/user-attachments/assets/54ff212d-d9cc-4acc-b2f9-6c737c65cc4b" />
 
-Configurar la cadena de conexión en ConexionBD.cs.
+Menú principal:
+<img width="699" height="742" alt="Menú principal" src="https://github.com/user-attachments/assets/57fcea47-b77f-41e2-be35-5905bda69799" />
 
-Ejecutar el proyecto con Ctrl + F5.
+Juego en progreso:
+<img width="836" height="513" alt="Juego" src="https://github.com/user-attachments/assets/b0f528e7-aebf-4da3-bb0c-a32f30bd35bb" />
 
-Capturas, 
-Validar conexión con base de datos:
+Uso del comodín 50:50:
+<img width="839" height="512" alt="Comodín 50:50" src="https://github.com/user-attachments/assets/5794ba58-8f5a-444d-94c2-73deae363b18" />
 
+Intento de uso duplicado del comodín:
+<img width="834" height="512" alt="Comodín duplicado" src="https://github.com/user-attachments/assets/03e239cb-ce04-4892-acf7-9d7f8e83ce94" />
 
-<img width="244" height="156" alt="image" src="https://github.com/user-attachments/assets/43191920-4f00-416a-a695-a714e7b6816e" />
+Respuesta incorrecta:
+<img width="836" height="512" alt="Respuesta incorrecta" src="https://github.com/user-attachments/assets/813e36c1-0a0f-45f5-b038-1b406c3c7120" />
 
+Resumen de partida:
+<img width="835" height="512" alt="Resumen" src="https://github.com/user-attachments/assets/5027da8f-3b7e-4cbb-a24a-c3dded4d1e31" />
 
-Login
+Ranking de jugadores:
+<img width="775" height="496" alt="Ranking" src="https://github.com/user-attachments/assets/69f8e577-927b-4280-bb1d-71ef2775138e" />
 
+Exportación del ranking a CSV:
+<img width="1335" height="639" alt="Exportar CSV" src="https://github.com/user-attachments/assets/a17f64f7-cc8d-4910-9964-9399215ade10" />
 
-<img width="726" height="432" alt="image" src="https://github.com/user-attachments/assets/3dd513e1-aa71-4397-9e99-696d60f59490" />
-
-
-Si ya está registrado dice bienvenido de nuevo
-
-
-<img width="727" height="488" alt="image" src="https://github.com/user-attachments/assets/54ff212d-d9cc-4acc-b2f9-6c737c65cc4b" />
-
-
-Menu
-
-
-<img width="699" height="742" alt="image" src="https://github.com/user-attachments/assets/57fcea47-b77f-41e2-be35-5905bda69799" />
-
-
-Juego
-
-
-<img width="836" height="513" alt="image" src="https://github.com/user-attachments/assets/b0f528e7-aebf-4da3-bb0c-a32f30bd35bb" />
-
-
-50:50
-
-
-<img width="839" height="512" alt="image" src="https://github.com/user-attachments/assets/5794ba58-8f5a-444d-94c2-73deae363b18" />
-
-
-50:50 no se puede usar dos veces:
-
-
-<img width="834" height="512" alt="image" src="https://github.com/user-attachments/assets/03e239cb-ce04-4892-acf7-9d7f8e83ce94" />
-
-
-Repuesta incorrecta:
-
-
-<img width="836" height="512" alt="image" src="https://github.com/user-attachments/assets/813e36c1-0a0f-45f5-b038-1b406c3c7120" />
-
-
-Resumen:
-
-
-<img width="835" height="512" alt="image" src="https://github.com/user-attachments/assets/5027da8f-3b7e-4cbb-a24a-c3dded4d1e31" />
-
-
-Ranking
-
-
-<img width="775" height="496" alt="image" src="https://github.com/user-attachments/assets/69f8e577-927b-4280-bb1d-71ef2775138e" />
-
-
-btn exportar csv
-
-
-<img width="1335" height="639" alt="image" src="https://github.com/user-attachments/assets/a17f64f7-cc8d-4910-9964-9399215ade10" />
-
-
-Solo usuarios como Brady y Profesor, pueden entrar al apartado de administración
-
-
-<img width="804" height="482" alt="image" src="https://github.com/user-attachments/assets/1711284d-49b1-4163-b29b-5df4358964a0" />
-
-
-
-
-
-
-
-
+Módulo de administración (solo Brady o Profesor):
+<img width="804" height="482" alt="Administración" src="https://github.com/user-attachments/assets/1711284d-49b1-4163-b29b-5df4358964a0" />
 
 Autores
 
 Brady Alexander Moncada Jiménez
 David Muños Suárez
+
 Instituto Universitario Pascual Bravo
-Tecnología en Desarrollo de Software — 2025
+Programa: Tecnología en Desarrollo de Software — 2025
