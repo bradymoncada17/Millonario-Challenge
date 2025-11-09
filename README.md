@@ -63,7 +63,7 @@ Desarrollar una aplicación de escritorio en C# que permita realizar un juego de
 - `Partidas (1 - N) RespuestasPartida`
 
 ---
-## 🧩 Normalización de datos (1FN → 2FN → 3FN)
+##  Normalización de datos Ejemplo (1FN → 2FN → 3FN)
 
 ---
 
