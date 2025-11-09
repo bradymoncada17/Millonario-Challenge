@@ -239,11 +239,18 @@ Módulo de administración (solo Brady o Profesor):
 
 <img width="804" height="482" alt="Administración" src="https://github.com/user-attachments/assets/1711284d-49b1-4163-b29b-5df4358964a0" />
 
+##NOTA:** 
+Aún no se ha implementado la funcionalidad de los botones “Público” y “Llamar a un amigo”.
+Sin embargo, se tiene previsto incorporarlos en futuras versiones.
 
+El botón “Público” se planea desarrollar como una simulación estadística que mostrará porcentajes aleatorios de votación, representando la opinión de un público ficticio para cada posible respuesta. De esta forma, el jugador podrá usar esa información como una ayuda estratégica para decidir su elección.
 
-Autores
+En cuanto al botón “Llamar a un amigo”, se está considerando reemplazarlo por una nueva funcionalidad alternativa que aporte un tipo de asistencia diferente dentro del juego, manteniendo la dinámica y el equilibrio en la dificultad.
+
+##Autores**
 
 Brady Alexander Moncada Jiménez
+
 David Muños Suárez
 
 Instituto Universitario Pascual Bravo
