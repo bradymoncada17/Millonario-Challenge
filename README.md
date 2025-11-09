@@ -74,19 +74,33 @@ Configurar la cadena de conexión en ConexionBD.cs.
 Ejecutar el proyecto con Ctrl + F5.
 
 Capturas, 
-<img width="535" height="380" alt="image" src="https://github.com/user-attachments/assets/2a88f816-1b18-4908-9a3d-32a5fa9e9fa2" />
-<img width="534" height="388" alt="image" src="https://github.com/user-attachments/assets/00882659-23b5-4e67-a9b2-6a017d31126e" />
-<img width="810" height="491" alt="image" src="https://github.com/user-attachments/assets/5bdb0a18-79d0-4398-b833-c87354840d01" />
-<img width="1409" height="641" alt="image" src="https://github.com/user-attachments/assets/f7a7a4f5-77bf-478b-923a-c9cfb07d7cbb" />
-<img width="808" height="486" alt="image" src="https://github.com/user-attachments/assets/bc63b08d-f674-41f5-b985-8df8b52e20f8" />
-<img width="775" height="378" alt="image" src="https://github.com/user-attachments/assets/c246304a-cd4c-48ce-b826-31726e6498e3" />
-<img width="574" height="600" alt="image" src="https://github.com/user-attachments/assets/4d043b75-14d2-478d-b03b-e3f6cb45f87d" />
+Validar conexión con base de datos:
+<img width="244" height="156" alt="image" src="https://github.com/user-attachments/assets/43191920-4f00-416a-a695-a714e7b6816e" />
+Login
+<img width="726" height="432" alt="image" src="https://github.com/user-attachments/assets/3dd513e1-aa71-4397-9e99-696d60f59490" />
+Si ya está registrado dice bienvenido de nuevo
+<img width="727" height="488" alt="image" src="https://github.com/user-attachments/assets/54ff212d-d9cc-4acc-b2f9-6c737c65cc4b" />
+Menu
+<img width="699" height="742" alt="image" src="https://github.com/user-attachments/assets/57fcea47-b77f-41e2-be35-5905bda69799" />
 Juego
-<img width="806" height="487" alt="image" src="https://github.com/user-attachments/assets/22505ca3-826e-4399-8579-048024aacee1" />
+<img width="836" height="513" alt="image" src="https://github.com/user-attachments/assets/b0f528e7-aebf-4da3-bb0c-a32f30bd35bb" />
 50:50
-<img width="808" height="486" alt="image" src="https://github.com/user-attachments/assets/6982e6d3-1946-4196-ab38-15d0a2a091da" />
-Retirarse
-<img width="941" height="511" alt="image" src="https://github.com/user-attachments/assets/e4ee8693-5a95-4237-ba32-47d86d7dda5e" />
+<img width="839" height="512" alt="image" src="https://github.com/user-attachments/assets/5794ba58-8f5a-444d-94c2-73deae363b18" />
+50:50 no se puede usar dos veces:
+<img width="834" height="512" alt="image" src="https://github.com/user-attachments/assets/03e239cb-ce04-4892-acf7-9d7f8e83ce94" />
+Repuesta incorrecta:
+<img width="836" height="512" alt="image" src="https://github.com/user-attachments/assets/813e36c1-0a0f-45f5-b038-1b406c3c7120" />
+Resumen:
+<img width="835" height="512" alt="image" src="https://github.com/user-attachments/assets/5027da8f-3b7e-4cbb-a24a-c3dded4d1e31" />
+Ranking
+<img width="775" height="496" alt="image" src="https://github.com/user-attachments/assets/69f8e577-927b-4280-bb1d-71ef2775138e" />
+btn exportar csv
+<img width="1335" height="639" alt="image" src="https://github.com/user-attachments/assets/a17f64f7-cc8d-4910-9964-9399215ade10" />
+Solo usuarios como Brady y Profesor, pueden entrar al apartado de administración
+<img width="804" height="482" alt="image" src="https://github.com/user-attachments/assets/1711284d-49b1-4163-b29b-5df4358964a0" />
+
+
+
 
 
 
