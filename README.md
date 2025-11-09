@@ -63,6 +63,80 @@ Desarrollar una aplicación de escritorio en C# que permita realizar un juego de
 - `Partidas (1 - N) RespuestasPartida`
 
 ---
+## 🧩 Normalización de datos (1FN → 2FN → 3FN)
+
+---
+
+### 1FN (No normalizada)**
+
+| UsuarioId | NombreUsuario | NombreCompleto | PartidaId | FechaInicio        | PreguntaId | TextoPregunta                   | Categoria | Dificultad | Premio | Opcion1 | Opcion1EsCorrecta | Opcion2 | Opcion2EsCorrecta | Opcion3 | Opcion3EsCorrecta | Opcion4 | Opcion4EsCorrecta | OpcionSeleccionada | EsCorrecta |
+|------------|----------------|----------------|------------|--------------------|-------------|---------------------------------|------------|-------------|---------|----------|------------------|----------|------------------|----------|------------------|----------|------------------|--------------------|------------|
+| 1 | brady | Brady Moncada | 101 | 2025-11-01 10:00 | 1001 | ¿Cuál es el planeta más grande? | Ciencia | 1 | 100 | Tierra | 0 | Marte | 0 | Júpiter | 1 | Venus | 0 | Júpiter | 1 |
+
+---
+
+### 2FN_Usuarios**
+
+| UsuarioId | NombreUsuario | NombreCompleto |
+|------------|----------------|----------------|
+| 1 | brady | Brady Moncada |
+
+---
+
+### 2FN_Preguntas**
+
+| PreguntaId | Texto | Categoria | Dificultad | Premio |
+|-------------|---------------------------------|------------|-------------|---------|
+| 1001 | ¿Cuál es el planeta más grande? | Ciencia | 1 | 100 |
+
+---
+
+### 2FN_Opciones**
+
+| OpcionId | PreguntaId | TextoOpcion | EsCorrecta |
+|-----------|-------------|--------------|-------------|
+| 5001 | 1001 | Tierra | 0 |
+| 5002 | 1001 | Marte | 0 |
+| 5003 | 1001 | Júpiter | 1 |
+| 5004 | 1001 | Venus | 0 |
+
+---
+
+###  2FN_Partidas**
+
+| PartidaId | UsuarioId | FechaInicio | FechaFin | DineroGanado |
+|------------|------------|--------------|-----------|----------------|
+| 101 | 1 | 2025-11-01 10:00 | 2025-11-01 10:05 | 100 |
+
+---
+
+### 2FN_Respuestas**
+
+| RespuestaId | PartidaId | PreguntaId | OpcionSeleccionadaId | EsCorrecta |
+|--------------|------------|-------------|------------------------|-------------|
+| 9001 | 101 | 1001 | 5003 | 1 |
+
+---
+
+###  3FN_Categorias**
+
+| CategoriaId | NombreCategoria | Descripcion |
+|--------------|-----------------|------------------------------------------|
+| 1 | Ciencia | Preguntas relacionadas con ciencia |
+
+---
+
+### 3FN_Preguntas**
+
+| PreguntaId | Texto | CategoriaId | Dificultad | Premio |
+|-------------|---------------------------------|-------------|-------------|---------|
+| 1001 | ¿Cuál es el planeta más grande? | 1 | 1 | 100 |
+
+##MER**
+
+<img width="835" height="698" alt="image" src="https://github.com/user-attachments/assets/de575c3f-5b5e-4f10-9cb5-5558228c7a90" />
+
+
 
 ## Tecnologías utilizadas
 
